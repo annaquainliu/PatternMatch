@@ -5,8 +5,35 @@
 #include <stdexcept>
 using namespace std;
 
+class DataType {
+
+};
+
+class Token {
+    public:
+        static Token tokenize(vector<string> queue) {
+            
+        }
+    private:
+        string toString() {
+            return "error";
+        }
+};
+
+class FunctionToken : Token {
+    public:
+        FunctionToken() {
+
+        }
+    private:
+        string name;
+        vector<DataType> arguments;
+        DataType returnType;
+        
+};
+
 Compiler::Compiler() {
-    this->keywords.assign({'[', ']', '(', ')', ',', ' ', ':', ';'}); 
+    this->keywords.assign({'[', ']', '(', ')', ',', ' ', ':', ';', '|'}); 
 }
 
 string Compiler::toLowerString(string s) {
@@ -29,6 +56,7 @@ vector<string> Compiler::parse(string input) {
             if (str != "") {
                 queue.push_back(str);
             }
+            // special case: :: cons, a two character keyword
             if (i < input.length() - 1 && input[i] == ':' && input[i + 1] == ':') {
                 queue.push_back("::");
                 i++;
