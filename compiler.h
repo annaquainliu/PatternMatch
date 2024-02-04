@@ -14,6 +14,7 @@ class Compiler {
         vector<string> parse(string input);
         string toLowerString(string s);
         vector<char> keywords;
+        
 };
 
 #endif 

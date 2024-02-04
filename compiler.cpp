@@ -5,14 +5,25 @@
 #include <stdexcept>
 using namespace std;
 
-class DataType {
+class Type {
 
+    public:
+        Type() {
+
+        }
+    private:
 };
+
 
 class Token {
     public:
         static Token tokenize(vector<string> queue) {
-            
+            string front = queue[queue.size() - 1];
+            queue.pop_back();
+
+        }
+        Type* typeOf() {
+            return new Type();
         }
     private:
         string toString() {
@@ -20,16 +31,27 @@ class Token {
         }
 };
 
-class FunctionToken : Token {
+class NameToken : Token {
     public:
-        FunctionToken() {
-
+        NameToken(string name) {
+            this->name = name;
         }
     private:
         string name;
-        vector<DataType> arguments;
-        DataType returnType;
+};
+
+class FunctionToken : Token {
+    public:
+        FunctionToken(string name, vector<string> params, Token body) {
+            this->name = name;
+            this->parameters = params;
+            this->body = body;
+        }
         
+    private:
+        string name;
+        vector<string> parameters;
+        Token body;
 };
 
 Compiler::Compiler() {
