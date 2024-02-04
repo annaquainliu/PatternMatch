@@ -34,21 +34,42 @@ class Token {
         }
 };
 
+class ApplyToken : Token {
+
+};
 // for constructors
 // patternmatching
-class ConstructorToken : Token {
+class ConstructorToken : ApplyToken {
 
     private:
-        
+
+    public:
+
 };
 
-class NameToken : Token {
+class VarToken : Token {
     public:
-        NameToken(string name) {
+        VarToken(string name) {
             this->name = name;
         }
     private:
         string name;
+};
+
+class BoolToken : Token {
+
+};
+
+class IntToken : Token {
+
+};
+
+class StringToken : Token {
+
+};
+
+class ListToken : Token {
+
 };
 
 class FunctionToken : Token {
