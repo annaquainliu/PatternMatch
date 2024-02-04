@@ -12,7 +12,8 @@ class Compiler {
 
     private:
         vector<string> parse(string input);
-        vector<string> keywords{"fun", "hello"};
+        string toLowerString(string s);
+        vector<char> keywords;
 };
 
 #endif 
