@@ -2,8 +2,11 @@
 #include <string>
 #include <vector>
 #include "compiler.h"
+#include "map"
+
 #include <stdexcept>
 using namespace std;
+
 
 class Type {
 
@@ -29,6 +32,14 @@ class Token {
         string toString() {
             return "error";
         }
+};
+
+// for constructors
+// patternmatching
+class ConstructorToken : Token {
+
+    private:
+        
 };
 
 class NameToken : Token {
