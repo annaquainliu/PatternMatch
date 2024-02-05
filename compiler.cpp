@@ -23,6 +23,19 @@ class Token {
         static Token tokenize(vector<string> queue) {
             string front = queue[queue.size() - 1];
             queue.pop_back();
+            if (front == "fun") {
+                string name = queue[queue.size() - 1];
+                queue.pop_back();
+                string front = queue[queue.size() - 1];
+                while (front != "=") {
+                    while (front != "=" && front != "|") {
+                        
+                    }
+                }
+            }
+            else {
+
+            }
 
         }
         Type* typeOf() {
@@ -34,20 +47,35 @@ class Token {
         }
 };
 
-class ApplyToken : Token {
+// Object that represents datatype constructors
+class DataTypeCons {
+    public:
+        //map of string name of type to datatype constructors
+        map<string, vector<DataTypeCons>> datatypeMap{};
 
+    private:
 };
-// for constructors
-// patternmatching
-class ConstructorToken : ApplyToken {
+
+class ApplyToken : public Token {
+    public:
 
     private:
 
-    public:
-
 };
 
-class VarToken : Token {
+// for constructors
+// patternmatching
+class ConstructorToken : public ApplyToken {
+
+    private:
+        string name; 
+
+    public:
+        
+
+};  
+
+class VarToken : public Token {
     public:
         VarToken(string name) {
             this->name = name;
@@ -56,33 +84,39 @@ class VarToken : Token {
         string name;
 };
 
-class BoolToken : Token {
+class Literal : public Token {
 
 };
 
-class IntToken : Token {
+class BoolToken : Literal {
 
 };
 
-class StringToken : Token {
+class IntToken : Literal {
 
 };
 
-class ListToken : Token {
+class StringToken : Literal {
+
+};
+
+class ListToken : Literal {
 
 };
 
 class FunctionToken : Token {
     public:
-        FunctionToken(string name, vector<string> params, Token body) {
+        FunctionToken(string name, vector<string> params, Token body, map<Token, Token> cases) {
             this->name = name;
             this->parameters = params;
             this->body = body;
+            this->cases = cases;
         }
         
     private:
         string name;
         vector<string> parameters;
+        map<Token, Token> cases;
         Token body;
 };
 
